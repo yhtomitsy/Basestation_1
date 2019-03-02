@@ -1,7 +1,7 @@
 module ts4231 (
     input clk,  // clock
     input rst,  // reset
-    inout D,
+    inout D, // D signal
     inout E,
     output wire [2:0] sensor_STATE,
     output wire [3:0] current_STATE
