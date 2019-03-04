@@ -1,0 +1,27 @@
+--cpu Cortex-M4.fp
+"basestationv1\startup_stm32f407xx.o"
+"basestationv1\main.o"
+"basestationv1\stm32f4xx_it.o"
+"basestationv1\stm32f4xx_hal_msp.o"
+"basestationv1\stm32f4xx_hal_i2c.o"
+"basestationv1\stm32f4xx_hal_i2c_ex.o"
+"basestationv1\stm32f4xx_hal_tim.o"
+"basestationv1\stm32f4xx_hal_tim_ex.o"
+"basestationv1\stm32f4xx_hal_uart.o"
+"basestationv1\stm32f4xx_hal_rcc.o"
+"basestationv1\stm32f4xx_hal_rcc_ex.o"
+"basestationv1\stm32f4xx_hal_flash.o"
+"basestationv1\stm32f4xx_hal_flash_ex.o"
+"basestationv1\stm32f4xx_hal_flash_ramfunc.o"
+"basestationv1\stm32f4xx_hal_gpio.o"
+"basestationv1\stm32f4xx_hal_dma_ex.o"
+"basestationv1\stm32f4xx_hal_dma.o"
+"basestationv1\stm32f4xx_hal_pwr.o"
+"basestationv1\stm32f4xx_hal_pwr_ex.o"
+"basestationv1\stm32f4xx_hal_cortex.o"
+"basestationv1\stm32f4xx_hal.o"
+"basestationv1\system_stm32f4xx.o"
+--library_type=microlib --strict --scatter "BaseStationV1\BaseStationV1.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "BaseStationV1.map" -o BaseStationV1\BaseStationV1.axf
