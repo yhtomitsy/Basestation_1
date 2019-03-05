@@ -1,20 +1,27 @@
 
 
 module four_sensor (
-	input clock,
-	input reset_n,
+	input clock,  // 50MHz
+	input reset_n, // Active LOW
 	// those are the sensor data lines
 	inout [NUMBER_OF_SENSORS-1:0]D_io,
 	// those are the sensor envelope lines
 	inout [NUMBER_OF_SENSORS-1:0]E_io,
 	output [NUMBER_OF_SENSORS-1:0]sync_o,
-	output [31:0]sensor_data_o_0,
+	output [31:0]sensor_data_o_0, 
 	output [31:0]sensor_data_o_1,
 	output [31:0]sensor_data_o_2,
 	output [31:0]sensor_data_o_3
   );
-  
-parameter NUMBER_OF_SENSORS = 20 ;
+/* sensor_data_o_0 - sensor_data_o_3
+		-- bit 31    	lighthouse_id
+		-- bit 30    	axis
+		-- bit 29    	valid
+		-- bits 28:19  sensor_id
+		-- bits 18:0	duration (divide by 50 to get microseconds)
+*/
+	
+parameter NUMBER_OF_SENSORS = 4 ; // 4 sensor
 parameter CLK_SPEED = 50_000_000 ;
 localparam NUMBER_OF_SPI_FRAMES = (NUMBER_OF_SENSORS+4-1)/4; // ceil division to get eg 2 frames when using 15 sensors
 reg [255:0]sensor_data[NUMBER_OF_SPI_FRAMES-1:0] ; 
