@@ -4,7 +4,7 @@ Version=Lattice Semiconductor Corporation iCEcube - Release: 2017.08.27940 - Bui
 ProjectName=tracker
 Vendor=SiliconBlue
 Synthesis=synplify
-ProjectVFiles=../../RTL/ts4231.v=work,../../RTL/lighthouse_sensor.vhd=work,../../RTL/tracker_top.vhd,../../RTL/uart_tx.v,../../RTL/IPs/tracker_pll.v
+ProjectVFiles=../../RTL/ts4231.v=work,../../RTL/lighthouse_sensor.vhd=work,../../RTL/tracker_top.vhd=work,../../RTL/uart_tx.v=work,../../RTL/IPs/tracker_pll.v=work
 ProjectCFiles=../../Constraint/tracker_top.sdc
 CurImplementation=tracker_Implmnt
 Implementations=tracker_Implmnt
@@ -66,13 +66,13 @@ DevicePower=
 NetlistFile=tracker_Implmnt/tracker.edf
 AdditionalEDIFFile=
 IPEDIFFile=
-DesignLib=tracker_Implmnt/sbt/netlist/oadb-tracker_top
-DesignView=_rt
-DesignCell=tracker_top
+DesignLib=
+DesignView=
+DesignCell=
 SynthesisSDCFile=tracker_Implmnt/tracker.scf
 UserPinConstraintFile=
 UserSDCFile=
-PhysicalConstraintFile=../../Constraint/pinmap.pcf
+PhysicalConstraintFile=
 BackendImplPathName=
 Devicevoltage=1.14
 DevicevoltagePerformance=+/-5%(datasheet default)

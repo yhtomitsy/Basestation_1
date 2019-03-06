@@ -76,7 +76,7 @@ architecture RTL of tracker_top is
     signal tick_clk         : std_logic;
 
     type sensor_state_t     is array(0 to NUMBER_OF_SENSORS-1) of std_logic_vector(2 downto 0);
-    type curren"001101000"t_state_t    is array(0 to NUMBER_OF_SENSORS-1) of std_logic_vector(3 downto 0);
+    type current_state_t    is array(0 to NUMBER_OF_SENSORS-1) of std_logic_vector(3 downto 0);
     type combine_data_us_t  is array(0 to NUMBER_OF_SENSORS-1) of unsigned(31 downto 0);
     type combine_data_t     is array(0 to NUMBER_OF_SENSORS-1) of std_logic_vector(31 downto 0);
 
@@ -244,7 +244,7 @@ begin
             end if;
         end if;
     end process;
-"001101000"
+
     tx_data_valid <= '1' when state = S_SEND_DATA or
                               state = S_SEND_IDLE_LINE else '0';
 
