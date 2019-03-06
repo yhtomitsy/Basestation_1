@@ -10,6 +10,15 @@ I2C_HandleTypeDef hi2c1;
 UART_HandleTypeDef huart1;
 
 #define BLUETOOTH 0
+#define DEBUG
+
+#ifdef DEBUG
+ #define DEBUG_PRINT(x)     printf (x)
+#else
+ #define DEBUG_PRINT(x)
+#endif
+
+#define ORIENTATION 1                  // (1) read orientation in Quaternions, (0) dont read quaternion data
 
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -22,12 +31,12 @@ UART_HandleTypeDef huart1;
 	
 // IMU 
 //Registers
-const uint8_t CHANNEL_COMMAND = 0;
-const uint8_t CHANNEL_EXECUTABLE = 1;
-const uint8_t CHANNEL_CONTROL = 2;
-const uint8_t CHANNEL_REPORTS = 3;
-const uint8_t CHANNEL_WAKE_REPORTS = 4;
-const uint8_t CHANNEL_GYRO = 5;
+#define CHANNEL_COMMAND 0
+#define CHANNEL_EXECUTABLE 1
+#define CHANNEL_CONTROL 2
+#define CHANNEL_REPORTS 3
+#define CHANNEL_WAKE_REPORTS 4
+#define CHANNEL_GYRO 5
 
 //All the ways we can configure or talk to the BNO080, figure 34, page 36 reference manual
 //These are used for low level communication with the sensor, on channel 2
@@ -112,6 +121,10 @@ static float quatReal = {0};
 static float accelX = 0;
 static float accelY = 0;
 static float accelZ = 0;
+static float gyroX = 0;
+static float gyroY = 0;
+static float gyroZ = 0;
+
 uint8_t IMU_Data[16] = {0};
 uint8_t IMU_Read_Success = 0;		
 uint8_t IMU_NA_Count = 0;
@@ -131,6 +144,7 @@ void initializeIMU(void);                                   // init IMU
 float twosComplement(uint8_t, uint8_t, uint8_t);            // convert from twos complement to 32 bit signed intergers
 void readIMUData(void);
 void displayData();
+uint8_t IMUAvailable(); 
 
 // enables us to use printf function on USART1
 PUTCHAR_PROTOTYPE  
@@ -172,17 +186,12 @@ void displayData()
 		// Holds the string from the IMU
 		uint8_t str[50]; 																						             
 		memset(str, 0, sizeof(str));
-		sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n", quatReal, quatI, quatJ, quatK, accelX, accelY, accelZ);
+		sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n", quatReal, quatI, quatJ, quatK, accelX, accelY, accelZ, gyroX, gyroY, gyroZ);
 		printf("%s", str);
+		//HAL_Delay(500);
 }
 
 /*****************************************IMU code**********************************************************/
- 
-/*void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c)
-{
-		if(IMU_Data_ready == 0)IMU_Data_ready = 1;
-		HAL_I2C_Master_Receive_IT(&hi2c1, BNO_ADDRESS << 1, cargo, 46);
-}*/
 
  /**
  * @brief BNO IMU initialization.
@@ -193,48 +202,41 @@ void initializeIMU()
 		uint8_t reg = 0;	 
 	
 	  // check if IMU is connected
-		while(HAL_I2C_Master_Transmit(&hi2c1, BNO_ADDRESS << 1, &reg, 1, 100) != HAL_OK)
-		{	
-				printf("imu not available\r\n");
-				HAL_Delay(500);
-		}
-		
-		HAL_Delay(100);
+		IMUAvailable();
 		
 		// reset IMU
 		resetIMU();
-		// flush meta data from IMU
-		while(HAL_I2C_Master_Receive(&hi2c1, BNO_ADDRESS << 1, cargo, 23, 100) == HAL_OK)
-		{
-			  reg = 0;
-				for(uint8_t j = 0; j < 23; j++)
-				{
-						if(cargo[j] == 0)reg++;
-				}
-				printf(".");
-				if(reg == 23) break;
-		}	
+		
 		
 		// check ID of IMU
 		while(!requestProductID())
 		{
-				printf("Confirming IMU ID\r\n");
+				DEBUG_PRINT("Confirming IMU ID\r\n");
 				HAL_Delay(500);
 		}
 		HAL_Delay(200);
 		
 		// configure quaternion output
-		if(setFeature(SENSOR_REPORTID_ROTATION_VECTOR, 10, 0))
+		if(ORIENTATION)
 		{
-				printf("\nRotation vector configured\r\n");
+				if(setFeature(SENSOR_REPORTID_ROTATION_VECTOR, 10, 0))
+				{
+						DEBUG_PRINT("\nRotation vector configured\r\n");
+				}
+				HAL_Delay(500);
+		}
+		
+		// configure linear acceleration output
+		if(setFeature(SENSOR_REPORTID_LINEAR_ACCELERATION, 1, 0))
+		{
+		    DEBUG_PRINT("\nReal acceleration configured\r\n");
 		}
 		HAL_Delay(500);
 		
-		// configure linear acceleration output
-		// TODO: Works when configured twice as done below. Check why
-		if(setFeature(SENSOR_REPORTID_LINEAR_ACCELERATION, 4, 0))
+		// configure angular acceleration output
+		if(setFeature(SENSOR_REPORTID_GYROSCOPE, 1, 0))
 		{
-		    printf("\nReal acceleration configured\r\n");
+		    DEBUG_PRINT("\nGyroscope configured\r\n");
 		}
 		HAL_Delay(500);
 }
@@ -350,6 +352,33 @@ uint8_t parseData()
 				IMU_NA_Count = 0;
 				return 1;
     }
+		//Check to see if this packet is a sensor reporting linear acceleration data
+		else if(((cargo[9] == SENSOR_REPORTID_GYROSCOPE) && (cargo[2] == 0x03) && (cargo[4] == 0xFB))){
+				//printf("Valid data linear1\r\n");
+				//next_data_seqNum = ++cargo[10];                                         // predict next data seqNum              
+        //stat_ = cargo[11] & 0x03;                                                 // bits 1:0 contain the status (0,1,2,3) 
+		
+				float x = (((int16_t)cargo[14] << 8) | cargo[13] ); 
+        float y = (((int16_t)cargo[16] << 8) | cargo[15] );
+        float z = (((int16_t)cargo[18] << 8) | cargo[17] );
+				
+				if(BLUETOOTH == 0)
+				{
+						gyroX = qToFloat_(x, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						gyroY = qToFloat_(y, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						gyroZ = qToFloat_(z, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+				}
+				else
+				{
+						for(uint8_t i = 0; i < 6; i++)
+						{
+								IMU_Data[i + 8] = cargo[13 + i];
+								//dma_buffer[i + 72 + 8] = cargo[13 + i];
+						}
+				}
+				IMU_NA_Count = 0;
+				return 1;
+    }
 		else
 		{
 				// increment counter everytime there is no IMU reading available
@@ -394,13 +423,53 @@ uint8_t setFeature(uint8_t reportID, uint16_t timeBetweenReports, uint32_t speci
 		return sendDataPacket(CHANNEL_CONTROL, 17);
 }
 
+//Send command to reset IC
+//Read all advertisement packets from sensor
+//The sensor has been seen to reset twice if we attempt too much too quickly.
+//This seems to work reliably.
 void resetIMU()
 {
-		shtpData[4] = 1; //Reset
+		// universal variable for this function
+		uint8_t zeroTrack = 0;
+	
+		DEBUG_PRINT("Reset IMU\r\n");
+	
+		shtpData[4] = 1; //Reset command
+	
 		//Attempt to start communication with sensor
 		sendDataPacket(CHANNEL_EXECUTABLE, 1); //Transmit packet on channel 1, 1 byte
-		
-		//SEGGER_RTT_printf(0, "Reset _in_function: %d\r\n", reset);
+	
+		// flush meta data from IMU
+		while(HAL_I2C_Master_Receive(&hi2c1, BNO_ADDRESS << 1, cargo, 23, 100) == HAL_OK)
+		{
+			  zeroTrack = 0;
+			
+				// check if the packet is made up of only zeros
+				// this means that the IMU has been reset successfully
+				for(uint8_t j = 0; j < 23; j++)
+				{
+						if(cargo[j] == 0)zeroTrack++;
+				}
+				
+				DEBUG_PRINT(".");
+				if(zeroTrack == 23) break;
+		}	
+		DEBUG_PRINT("Reset IMU\r\n");
+}
+
+//Function that checks if IMU is connected.
+//sends 0 to IMU and checks if transfer was successful
+uint8_t IMUAvailable()
+{
+		uint8_t reg = 0;
+	
+		while(HAL_I2C_Master_Transmit(&hi2c1, BNO_ADDRESS << 1, &reg, 1, 100) != HAL_OK)
+		{	
+				DEBUG_PRINT("IMU not available\r\n");
+				HAL_Delay(500);
+		}
+		HAL_Delay(100);
+		return 1;
 }
 
 uint8_t requestProductID()
