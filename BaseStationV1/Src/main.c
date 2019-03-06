@@ -130,6 +130,9 @@ static float accelZ = 0;
 static float gyroX = 0;
 static float gyroY = 0;
 static float gyroZ = 0;
+static float accelRawX = 0;
+static float accelRawY = 0;
+static float accelRawZ = 0;
 
 uint8_t IMU_Data[16] = {0};
 uint8_t IMU_Read_Success = 0;		
@@ -161,6 +164,7 @@ PUTCHAR_PROTOTYPE
     return ch;
 }	
 
+int counter = 0;
 
 int main(void)
 {
@@ -183,6 +187,8 @@ int main(void)
 			readIMUData();
 			//for debug purposes only
 			displayData();
+			
+			//HAL_Delay(500);
   }
 }
 
@@ -192,7 +198,7 @@ void displayData()
 		uint8_t str[50]; 																						             
 		memset(str, 0, sizeof(str));
 		//sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n", quatReal, quatI, quatJ, quatK, accelX, accelY, accelZ, gyroX, gyroY, gyroZ);
-		sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n",accelX, accelY, accelZ, gyroX, gyroY, gyroZ);
+		sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n",accelRawX, accelRawY, accelRawZ, gyroX, gyroY, gyroZ);
 		DEBUG_PRINT_VAR("%s", str);
 		//HAL_Delay(500);
 }
@@ -213,7 +219,6 @@ void initializeIMU()
 		// reset IMU
 		resetIMU();
 		
-		
 		// check ID of IMU
 		while(!requestProductID())
 		{
@@ -223,30 +228,43 @@ void initializeIMU()
 		HAL_Delay(200);
 		
 		// configure quaternion output
-		if(ORIENTATION)
-		{
+		#ifdef ROT_VECT
 				if(setFeature(SENSOR_REPORTID_ROTATION_VECTOR, 10, 0))
 				{
 						DEBUG_PRINT("\nRotation vector configured\r\n");
 				}
 				HAL_Delay(500);
-		}
+		#endif
 		
 		// configure linear acceleration output
-		if(setFeature(SENSOR_REPORTID_LINEAR_ACCELERATION, 1, 0))
-		{
-		    DEBUG_PRINT("\nReal acceleration configured\r\n");
-		}
-		HAL_Delay(500);
+		#ifdef ACCEL_REAL
+				if(setFeature(SENSOR_REPORTID_LINEAR_ACCELERATION, 1, 0))
+				{
+						DEBUG_PRINT("\nReal acceleration configured\r\n");
+				}
+				HAL_Delay(500);
+		#endif
+				
+		// configure angular acceleration output
+		#ifdef GYRO_RAW
+				if(setFeature(SENSOR_REPORTID_GYROSCOPE, 1, 0))
+				{
+						DEBUG_PRINT("\nGyroscope configured\r\n");
+				}
+				HAL_Delay(500);
+		#endif
 		
 		// configure angular acceleration output
-		if(setFeature(SENSOR_REPORTID_GYROSCOPE, 1, 0))
-		{
-		    DEBUG_PRINT("\nGyroscope configured\r\n");
-		}
-		HAL_Delay(500);
+		#ifdef ACCEL_RAW
+				if(setFeature(SENSOR_REPORTID_ACCELEROMETER, 1, 0))
+				{
+						DEBUG_PRINT("\nGyroscope configured\r\n");
+				}
+				HAL_Delay(500);
+		#endif
 }
 
+// read IMU data through i2C port
 void readIMUData()
 {
 		uint8_t i = 0;
@@ -303,21 +321,39 @@ void readIMUData()
 //shtpData[12:13]: Accuracy estimate
 uint8_t parseData()
 {  
-    //Check to see if this packet is a sensor reporting quaternion data
-    if((cargo[9] == SENSOR_REPORTID_ROTATION_VECTOR) && (cargo[2] == 0x03) && (cargo[4] == 0xFB)){
-				//printf("Valid data quat\r\n");
-				//next_data_seqNum = ++cargo[10];                                         	// predict next data seqNum              
-        //stat_ = cargo[11] & 0x03;                                                 // bits 1:0 contain the status (0,1,2,3) 
-				float qI = (((int16_t)cargo[14] << 8) | cargo[13] ); 
-        float qJ = (((int16_t)cargo[16] << 8) | cargo[15] );
-        float qK = (((int16_t)cargo[18] << 8) | cargo[17] );
-        float qReal = (((int16_t)cargo[20] << 8) | cargo[19] ); 
+		// calculate length of of incoming packet
+		int16_t dataLength = ((uint16_t)cargo[1] << 8 | cargo[0]);
+		dataLength &= ~(1 << 15); //Clear the MSbit. This bit indicates if this package is a continuation
 		
+		//Remove the header bytes from the data count
+		dataLength -= 4; 
+		
+		// combine incoming bits bytes
+		uint8_t status = shtpData[5 + 2] & 0x03; //Get status bits
+		uint16_t data1 = (((int16_t)cargo[14] << 8) | cargo[13] );
+		uint16_t data2 = (((int16_t)cargo[16] << 8) | cargo[15] );
+		uint16_t data3 = (((int16_t)cargo[18] << 8) | cargo[17] );
+		uint16_t data4 = 0;
+		uint16_t data5 = 0;
+
+		if (dataLength - 5 > 9)
+		{
+			data4 = (((int16_t)cargo[20] << 8) | cargo[19] );
+		}
+		if (dataLength - 5 > 11)
+		{
+			data5 = (((int16_t)cargo[22] << 8) | cargo[21] );
+		}
+		
+    //Check to see if this packet is a sensor reporting quaternion data
+    if((cargo[9] == SENSOR_REPORTID_ROTATION_VECTOR))
+		{// && (cargo[2] == 0x03) && (cargo[4] == 0xFB)){
+					
 				#ifndef BLUETOOTH
-						quatReal = qToFloat_(qReal, rotationVector_Q1); //pow(2, 14 * -1);//QP(14); 
-						quatI = qToFloat_(qI, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14); 
-						quatJ = qToFloat_(qJ, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14); 
-						quatK = qToFloat_(qK, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14);                  // apply Q point (quats are already unity vector 	
+						quatReal = qToFloat_(data4, rotationVector_Q1); 	 //pow(2, 14 * -1);//QP(14); 
+						quatI = qToFloat_(data1, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14); 
+						quatJ = qToFloat_(data2, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14); 
+						quatK = qToFloat_(data3, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14);                  // apply Q point (quats are already unity vector 	
 				#else
 						for(uint8_t i = 0; i < 8; i++)
 						{
@@ -330,19 +366,13 @@ uint8_t parseData()
 				return 1;
 		}
 		//Check to see if this packet is a sensor reporting linear acceleration data
-		else if(((cargo[9] == SENSOR_REPORTID_LINEAR_ACCELERATION) && (cargo[2] == 0x03) && (cargo[4] == 0xFB))){
-				//printf("Valid data linear1\r\n");
-				//next_data_seqNum = ++cargo[10];                                         // predict next data seqNum              
-        //stat_ = cargo[11] & 0x03;                                               // bits 1:0 contain the status (0,1,2,3) 
-		
-				float x = (((int16_t)cargo[14] << 8) | cargo[13] ); 
-        float y = (((int16_t)cargo[16] << 8) | cargo[15] );
-        float z = (((int16_t)cargo[18] << 8) | cargo[17] );
-				
+		else if(((cargo[9] == SENSOR_REPORTID_LINEAR_ACCELERATION)))
+		{
+							
 				#ifndef BLUETOOTH
-						accelX = qToFloat_(x, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
-						accelY = qToFloat_(y, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
-						accelZ = qToFloat_(z, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						accelX = qToFloat_(data1, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						accelY = qToFloat_(data2, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						accelZ = qToFloat_(data3, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
 				#else
 						for(uint8_t i = 0; i < 6; i++)
 						{
@@ -354,20 +384,32 @@ uint8_t parseData()
 				IMU_NA_Count = 0;
 				return 1;
     }
-		//Check to see if this packet is a sensor reporting linear acceleration data
-		else if(((cargo[9] == SENSOR_REPORTID_GYROSCOPE) && (cargo[2] == 0x03) && (cargo[4] == 0xFB))){
-				//printf("Valid data linear1\r\n");
-				//next_data_seqNum = ++cargo[10];                                         // predict next data seqNum              
-        //stat_ = cargo[11] & 0x03;                                               // bits 1:0 contain the status (0,1,2,3) 
-		
-				float x = (((int16_t)cargo[14] << 8) | cargo[13] ); 
-        float y = (((int16_t)cargo[16] << 8) | cargo[15] );
-        float z = (((int16_t)cargo[18] << 8) | cargo[17] );
-				
+		//Check to see if this packet is a sensor reporting raw gyroscope data
+		else if(((cargo[9] == SENSOR_REPORTID_GYROSCOPE)))
+		{
+								
 				#ifndef BLUETOOTH
-						gyroX = qToFloat_(x, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
-						gyroY = qToFloat_(y, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
-						gyroZ = qToFloat_(z, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						gyroX = qToFloat_(data1, gyro_Q1); //pow(2, 14 * -1);//QP(14); 
+						gyroY = qToFloat_(data2, gyro_Q1); //pow(2, 14 * -1);//QP(14); 
+						gyroZ = qToFloat_(data3, gyro_Q1); //pow(2, 14 * -1);//QP(14); 
+				#else
+						for(uint8_t i = 0; i < 6; i++)
+						{
+								IMU_Data[i + 8] = cargo[13 + i];
+								//dma_buffer[i + 72 + 8] = cargo[13 + i];
+						}
+				#endif
+				IMU_NA_Count = 0;
+				return 1;
+    }
+		//Check to see if this packet is a sensor reporting raw acceleration data
+		else if(((cargo[9] == SENSOR_REPORTID_ACCELEROMETER)))
+		{
+								
+				#ifndef BLUETOOTH
+						accelRawX = qToFloat_(data1, accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						accelRawY = qToFloat_(data2, accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
+						accelRawZ = qToFloat_(data3, accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
 				#else
 						for(uint8_t i = 0; i < 6; i++)
 						{

@@ -3,9 +3,9 @@
 <title>Static Call Graph - [BaseStationV1\BaseStationV1.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image BaseStationV1\BaseStationV1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Wed Mar 06 15:26:24 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Wed Mar 06 17:47:32 2019
 <BR><P>
-<H3>Maximum Stack Usage =        392 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        376 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; readIMUData &rArr; parseData &rArr; qToFloat_ &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 <P>
@@ -1042,7 +1042,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
-<P><STRONG><a name="[b8]"></a>initializeIMU</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, main.o(i.initializeIMU))
+<P><STRONG><a name="[b8]"></a>initializeIMU</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, main.o(i.initializeIMU))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = initializeIMU &rArr; resetIMU &rArr; HAL_I2C_Master_Receive &rArr; I2C_MasterRequestRead &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
@@ -1057,7 +1057,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5c]"></a>main</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = main &rArr; readIMUData &rArr; parseData &rArr; qToFloat_ &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = main &rArr; readIMUData &rArr; parseData &rArr; qToFloat_ &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
@@ -1070,8 +1070,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[be]"></a>parseData</STRONG> (Thumb, 400 bytes, Stack size 40 bytes, main.o(i.parseData))
-<BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = parseData &rArr; qToFloat_ &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[be]"></a>parseData</STRONG> (Thumb, 246 bytes, Stack size 24 bytes, main.o(i.parseData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = parseData &rArr; qToFloat_ &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;qToFloat_
 </UL>
@@ -1091,7 +1091,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[bd]"></a>readIMUData</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, main.o(i.readIMUData))
-<BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = readIMUData &rArr; parseData &rArr; qToFloat_ &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = readIMUData &rArr; parseData &rArr; qToFloat_ &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Master_Receive
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parseData
