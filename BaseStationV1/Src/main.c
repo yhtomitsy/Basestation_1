@@ -9,11 +9,17 @@
 I2C_HandleTypeDef hi2c1;
 UART_HandleTypeDef huart1;
 
-#define BLUETOOTH 0
-#define DEBUG
+//#define BLUETOOTH      // if defined output data through BT module
+#define DEBUG          // if defined output debug messages on USART1
+#define ACCEL_RAW      // if defined output raw accelerometer data
+#define GYRO_RAW       // if defined output raw gyro data
+//#define ROT_VECT       // if defined output rotation vector
+//#define ACCEL_REAL     // if defined output real acceleration data
+
 
 #ifdef DEBUG
- #define DEBUG_PRINT(x)     printf (x)
+ #define DEBUG_PRINT(x)     printf(x)
+ #define DEBUG_PRINT_VAR(x,y)     printf(x,y)
 #else
  #define DEBUG_PRINT(x)
 #endif
@@ -177,7 +183,6 @@ int main(void)
 			readIMUData();
 			//for debug purposes only
 			displayData();
-
   }
 }
 
@@ -186,8 +191,9 @@ void displayData()
 		// Holds the string from the IMU
 		uint8_t str[50]; 																						             
 		memset(str, 0, sizeof(str));
-		sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n", quatReal, quatI, quatJ, quatK, accelX, accelY, accelZ, gyroX, gyroY, gyroZ);
-		printf("%s", str);
+		//sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n", quatReal, quatI, quatJ, quatK, accelX, accelY, accelZ, gyroX, gyroY, gyroZ);
+		sprintf((char*)&str[0], "%3.2f,%3.2f,%3.2f,%3.2f,%3.2f,%3.2f\n",accelX, accelY, accelZ, gyroX, gyroY, gyroZ);
+		DEBUG_PRINT_VAR("%s", str);
 		//HAL_Delay(500);
 }
 
@@ -307,21 +313,19 @@ uint8_t parseData()
         float qK = (((int16_t)cargo[18] << 8) | cargo[17] );
         float qReal = (((int16_t)cargo[20] << 8) | cargo[19] ); 
 		
-				if(BLUETOOTH == 0)
-				{
+				#ifndef BLUETOOTH
 						quatReal = qToFloat_(qReal, rotationVector_Q1); //pow(2, 14 * -1);//QP(14); 
 						quatI = qToFloat_(qI, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14); 
 						quatJ = qToFloat_(qJ, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14); 
-						quatK = qToFloat_(qK, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14);                  // apply Q point (quats are already unity vector 
-				}
-				else
-				{
+						quatK = qToFloat_(qK, rotationVector_Q1);       //pow(2, 14 * -1);//QP(14);                  // apply Q point (quats are already unity vector 	
+				#else
 						for(uint8_t i = 0; i < 8; i++)
 						{
 								IMU_Data[i] = cargo[13 + i];
 								//dma_buffer[i + 72] = cargo[13 + i];
 						}
-				}
+				#endif
+						
 				IMU_NA_Count = 0;
 				return 1;
 		}
@@ -329,26 +333,24 @@ uint8_t parseData()
 		else if(((cargo[9] == SENSOR_REPORTID_LINEAR_ACCELERATION) && (cargo[2] == 0x03) && (cargo[4] == 0xFB))){
 				//printf("Valid data linear1\r\n");
 				//next_data_seqNum = ++cargo[10];                                         // predict next data seqNum              
-        //stat_ = cargo[11] & 0x03;                                                 // bits 1:0 contain the status (0,1,2,3) 
+        //stat_ = cargo[11] & 0x03;                                               // bits 1:0 contain the status (0,1,2,3) 
 		
 				float x = (((int16_t)cargo[14] << 8) | cargo[13] ); 
         float y = (((int16_t)cargo[16] << 8) | cargo[15] );
         float z = (((int16_t)cargo[18] << 8) | cargo[17] );
 				
-				if(BLUETOOTH == 0)
-				{
+				#ifndef BLUETOOTH
 						accelX = qToFloat_(x, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
 						accelY = qToFloat_(y, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
 						accelZ = qToFloat_(z, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
-				}
-				else
-				{
+				#else
 						for(uint8_t i = 0; i < 6; i++)
 						{
 								IMU_Data[i + 8] = cargo[13 + i];
 								//dma_buffer[i + 72 + 8] = cargo[13 + i];
 						}
-				}
+				#endif
+						
 				IMU_NA_Count = 0;
 				return 1;
     }
@@ -356,26 +358,23 @@ uint8_t parseData()
 		else if(((cargo[9] == SENSOR_REPORTID_GYROSCOPE) && (cargo[2] == 0x03) && (cargo[4] == 0xFB))){
 				//printf("Valid data linear1\r\n");
 				//next_data_seqNum = ++cargo[10];                                         // predict next data seqNum              
-        //stat_ = cargo[11] & 0x03;                                                 // bits 1:0 contain the status (0,1,2,3) 
+        //stat_ = cargo[11] & 0x03;                                               // bits 1:0 contain the status (0,1,2,3) 
 		
 				float x = (((int16_t)cargo[14] << 8) | cargo[13] ); 
         float y = (((int16_t)cargo[16] << 8) | cargo[15] );
         float z = (((int16_t)cargo[18] << 8) | cargo[17] );
 				
-				if(BLUETOOTH == 0)
-				{
+				#ifndef BLUETOOTH
 						gyroX = qToFloat_(x, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
 						gyroY = qToFloat_(y, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
 						gyroZ = qToFloat_(z, linear_accelerometer_Q1); //pow(2, 14 * -1);//QP(14); 
-				}
-				else
-				{
+				#else
 						for(uint8_t i = 0; i < 6; i++)
 						{
 								IMU_Data[i + 8] = cargo[13 + i];
 								//dma_buffer[i + 72 + 8] = cargo[13 + i];
 						}
-				}
+				#endif
 				IMU_NA_Count = 0;
 				return 1;
     }

@@ -27,10 +27,26 @@ Project File Date:  03/04/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'BaseStationV1'
+compiling main.c...
+../Src/main.c(152): warning:  #1295-D: Deprecated declaration displayData - give arg types
+  void displayData();
+../Src/main.c(153): warning:  #1295-D: Deprecated declaration IMUAvailable - give arg types
+  uint8_t IMUAvailable(); 
+../Src/main.c(208): warning:  #177-D: variable "reg" was declared but never referenced
+  		uint8_t reg = 0;	 
+../Src/main.c(123): warning:  #550-D: variable "quatI" was set but never used
+  static float quatI = {0};
+../Src/main.c(124): warning:  #550-D: variable "quatJ" was set but never used
+  static float quatJ = {0};
+../Src/main.c(125): warning:  #550-D: variable "quatK" was set but never used
+  static float quatK = {0};
+../Src/main.c(126): warning:  #550-D: variable "quatReal" was set but never used
+  static float quatReal = {0};
+../Src/main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=15430 RO-data=594 RW-data=80 ZI-data=1328  
+Program Size: Code=15378 RO-data=598 RW-data=80 ZI-data=1328  
 FromELF: creating hex file...
-"BaseStationV1\BaseStationV1.axf" - 0 Error(s), 0 Warning(s).
+"BaseStationV1\BaseStationV1.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -48,7 +64,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.1.2
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>
