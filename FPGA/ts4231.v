@@ -1,7 +1,7 @@
 module ts4231 (
     input clk,  // clock
     input rst,  // reset
-    inout D, // D signal
+    inout D,
     inout E,
     output wire [2:0] sensor_STATE,
     output wire [3:0] current_STATE
@@ -48,7 +48,7 @@ module ts4231 (
     end else begin
       case(state[0])
         IDLE: begin
-             state[0] <= RESET_COUNTERS;
+          state[0] <= RESET_COUNTERS;
 			 state[1] <= CHECK_BUS;
 			 state[2] <= WAIT_FOR_LIGHT;
         end
@@ -56,15 +56,15 @@ module ts4231 (
 			 if(sensor_state==SLEEP_STATE) begin
     					state[0] <= GO_TO_WATCH;
     		 end  
-             if(sensor_state==WATCH_STATE) begin
-                        state[0] <= IDLE;
-             end  
-      		 if(sensor_state==S0_STATE) begin
-      				    state[0] <= CONFIG_DEVICE;
-      		 end  
-      		 if(sensor_state==S3_STATE) begin
-      				    state[0] <= GO_TO_WATCH;
-      		 end
+          if(sensor_state==WATCH_STATE) begin
+    					state[0] <= IDLE;
+    			end  
+      		if(sensor_state==S0_STATE) begin
+      				state[0] <= CONFIG_DEVICE;
+      		end  
+      		if(sensor_state==S3_STATE) begin
+      				state[0] <= GO_TO_WATCH;
+      		end
           if(sensor_state==UNKNOWN) begin
               state[0] <= IDLE;
           end
