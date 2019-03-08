@@ -1,0 +1,10 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+D:/VR/NotePad++/UART_ROM_TX.v,1552076371,verilog,,D:/VR/NotePad++/baud_rate_gen.v,,One_Sensor_UART_TX,,,,,,,,
+D:/VR/NotePad++/baud_rate_gen.v,1370382238,verilog,,D:/VR/NotePad++/transmitter.v,,baud_rate_gen,,,,,,,,
+D:/VR/NotePad++/receiver.v,1552070842,verilog,,D:/VR/NotePad++/transmitter.v,,receiver,,,,,,,,
+D:/VR/NotePad++/transmitter.v,1370382238,verilog,,D:/VR/Vivado/080362/UART_ROM_TX/UART_ROM_TX.srcs/sim_1/new/UART_ROM_TX_Tb.v,,transmitter,,,,,,,,
+D:/VR/Vivado/080362/UART_ROM_TX/UART_ROM_TX.sim/sim_1/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
+D:/VR/Vivado/080362/UART_ROM_TX/UART_ROM_TX.srcs/sim_1/new/UART_ROM_TX_Tb.v,1552074475,verilog,,,,UART_ROM_TX_Tb,,,,,,,,

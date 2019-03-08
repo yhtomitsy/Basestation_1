@@ -1,0 +1,12 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/VR/NotePad++/UART_ROM_TX.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module One_Sensor_UART_TX
+WARNING: [VRFC 10-3676] redeclaration of ansi port 'state' is not allowed [D:/VR/NotePad++/UART_ROM_TX.v:23]
+WARNING: [VRFC 10-3676] redeclaration of ansi port 'tx_busy' is not allowed [D:/VR/NotePad++/UART_ROM_TX.v:25]
+WARNING: [VRFC 10-3676] redeclaration of ansi port 'data' is not allowed [D:/VR/NotePad++/UART_ROM_TX.v:27]
+WARNING: [VRFC 10-3676] redeclaration of ansi port 'wr_en_Push' is not allowed [D:/VR/NotePad++/UART_ROM_TX.v:28]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/VR/NotePad++/baud_rate_gen.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module baud_rate_gen
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/VR/NotePad++/transmitter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module transmitter
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/VR/Vivado/080362/UART_ROM_TX/UART_ROM_TX.srcs/sim_1/new/UART_ROM_TX_Tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module UART_ROM_TX_Tb

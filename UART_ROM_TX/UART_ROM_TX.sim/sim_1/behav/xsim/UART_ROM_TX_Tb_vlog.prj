@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../../../NotePad++/UART_ROM_TX.v" \
+"../../../../../../../NotePad++/baud_rate_gen.v" \
+"../../../../../../../NotePad++/transmitter.v" \
+"../../../../UART_ROM_TX.srcs/sim_1/new/UART_ROM_TX_Tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

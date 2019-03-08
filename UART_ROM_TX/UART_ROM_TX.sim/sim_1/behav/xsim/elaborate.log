@@ -1,0 +1,19 @@
+Vivado Simulator 2018.3
+Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
+Running: D:/Programs/Xilinx/Vivado/2018.3/bin/unwrapped/win64.o/xelab.exe -wto ad9af41830ed4e978572e87b91bfe8f8 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot UART_ROM_TX_Tb_behav xil_defaultlib.UART_ROM_TX_Tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "D:/VR/NotePad++/UART_ROM_TX.v" Line 1. Module One_Sensor_UART_TX doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "D:/VR/NotePad++/baud_rate_gen.v" Line 5. Module baud_rate_gen_default doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "D:/VR/NotePad++/transmitter.v" Line 1. Module transmitter doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "D:/VR/NotePad++/baud_rate_gen.v" Line 5. Module baud_rate_gen_default doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.baud_rate_gen_default
+Compiling module xil_defaultlib.transmitter
+Compiling module xil_defaultlib.One_Sensor_UART_TX
+Compiling module xil_defaultlib.UART_ROM_TX_Tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot UART_ROM_TX_Tb_behav
