@@ -1,0 +1,50 @@
+BLOCK RESETPATHS ;
+BLOCK ASYNCPATHS ;
+
+BLOCK NET "*reset*" ;
+FREQUENCY NET "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/tx_byte_clk"                            120.000 MHz; 
+FREQUENCY NET "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/dphy2cmos_ch3/csi2.csi_rx/csi_rx/lattice.dphy_rx/eclk"              240.0 MHz; 
+FREQUENCY NET "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/dphy2cmos_ch2/csi2.csi_rx/csi_rx/lattice.dphy_rx/eclk"              240.0 MHz; 
+FREQUENCY NET "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/dphy2cmos_ch1/csi2.csi_rx/csi_rx/lattice.dphy_rx/eclk"              240.0 MHz; 
+FREQUENCY NET "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/dphy2cmos_ch0/csi2.csi_rx/csi_rx/lattice.dphy_rx/eclk"              240.0 MHz; 
+SYSCONFIG SLAVE_SPI_PORT=DISABLE;
+IOBUF PORT "reset_n_i" IO_TYPE=LVCMOS25 ;
+PROHIBIT PRIMARY NET "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/cmos2dphy_inst/core_rstn" ; 
+GSR_NET NET "reset_n_i_c" ;
+#### block async reset pins of pmi_fifos. false hold timing violations
+#### update pmi_genpmi_fifo pathnames if necessary 
+BLOCK NET "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/cmos2dphy_inst/core_rstn" ; 
+DEFINE ASIC GROUP "pmi_resets" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/line_buffer_ch1/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232/pdp_ram_0_1_0" PIN "RST"  
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/line_buffer_ch1/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232/pdp_ram_0_0_1" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/line_buffer_ch1/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232_82/pdp_ram_0_1_0" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/line_buffer_ch1/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232_82/pdp_ram_0_0_1" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/byte_bufout_ch0_63__I_0/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232/pdp_ram_0_1_0" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/byte_bufout_ch0_63__I_0/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232/pdp_ram_0_0_1" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/byte_bufout_ch0_63__I_0/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232_82/pdp_ram_0_1_0" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/byte_bufout_ch0_63__I_0/line_buffer/pmi_genpmi_fifo_dcLIFMDasyncnoreg125502562562563232_82/pdp_ram_0_0_1" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/cmos2dphy_inst/tx_global_operation_inst/tx_global_operation_inst/LP_HS_DELAY_CNTRL_inst/pmi_genpmi_fifo_dcLIFMDasyncreg16401281281286464/pdp_ram_0_3_0" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/cmos2dphy_inst/tx_global_operation_inst/tx_global_operation_inst/LP_HS_DELAY_CNTRL_inst/pmi_genpmi_fifo_dcLIFMDasyncreg16401281281286464/pdp_ram_0_0_3" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/cmos2dphy_inst/tx_global_operation_inst/tx_global_operation_inst/LP_HS_DELAY_CNTRL_inst/pmi_genpmi_fifo_dcLIFMDasyncreg16401281281286464/pdp_ram_0_1_2" PIN "RST" 
+ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/cmos2dphy_inst/tx_global_operation_inst/tx_global_operation_inst/LP_HS_DELAY_CNTRL_inst/pmi_genpmi_fifo_dcLIFMDasyncreg16401281281286464/pdp_ram_0_2_1" PIN "RST" ; 
+BLOCK PATH TO GROUP "pmi_resets" ; 
+
+LOCATE COMP "mux_sel_i" SITE "J2";  
+LOCATE COMP "reset_n_i" SITE "F2"; 
+
+LOCATE COMP "clk_ch0_p" SITE "D9"; 
+LOCATE COMP "d0_ch0_p" SITE "F9"; 
+LOCATE COMP "d1_ch0_p" SITE "H9";
+
+LOCATE COMP "clk_ch1_p" SITE "J7"; 
+LOCATE COMP "d0_ch1_p" SITE "E9"; 
+LOCATE COMP "d1_ch1_p" SITE "J9"; 
+
+LOCATE COMP "clk_ch2_p" SITE "G7"; 
+LOCATE COMP "d0_ch2_p" SITE "E1"; 
+LOCATE COMP "d1_ch2_p" SITE "D1"; 
+
+LOCATE COMP "clk_ch3_p" SITE "J6";
+LOCATE COMP "d0_ch3_p" SITE "J3"; 
+LOCATE COMP "d1_ch3_p" SITE "J4"; 
+LOCATE COMP "d1_ch3_p" SITE "J4"; 

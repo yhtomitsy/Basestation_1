@@ -1,0 +1,7 @@
+#Start recording tcl command: 3/17/2019 14:17:41
+#Project Location: C:/Projects/FaceCam2/FPGA/WorkDir; Project name: FaceCam
+prj_project open "C:/Projects/FaceCam2/FPGA/WorkDir/FaceCam.ldf"
+sbp_design open -dsgn "C:/Projects/FaceCam2/FPGA/IPs/csi2_4to1/csi2_4to1.sbx"
+sbp_builder connect_reset -ip {csi2_4to1/csi2_4to1_1}
+sbp_design save
+#Stop recording: 3/17/2019 14:18:24
