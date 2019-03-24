@@ -27,27 +27,13 @@ ASIC "csi2csi_inst/cmos2dphy_inst/tx_global_operation_inst/tx_global_operation_i
 ASIC "csi2csi_inst/cmos2dphy_inst/tx_global_operation_inst/tx_global_operation_inst/LP_HS_DELAY_CNTRL_inst/pmi_genpmi_fifo_dcLIFMDasyncreg16401281281286464/pdp_ram_0_1_2" PIN "RST" 
 ASIC "csi2csi_inst/cmos2dphy_inst/tx_global_operation_inst/tx_global_operation_inst/LP_HS_DELAY_CNTRL_inst/pmi_genpmi_fifo_dcLIFMDasyncreg16401281281286464/pdp_ram_0_2_1" PIN "RST" ; 
 BLOCK PATH TO GROUP "pmi_resets" ; 
-
-#LOCATE COMP "mux_sel_i" BANK 0 ; 
-#LOCATE COMP "ref_clk_i" BANK 0 ; 
-#LOCATE COMP "reset_n_i" BANK 0 ;
-
-LOCATE COMP "mux_sel_i" SITE "J2";  
-LOCATE COMP "reset_n_i" SITE "F2"; 
-
-LOCATE COMP "clk_ch0_p_i" SITE "D9"; 
-LOCATE COMP "d0_ch0_p_i" SITE "F9"; 
-LOCATE COMP "d1_ch0_p_i" SITE "H9";
-
-LOCATE COMP "clk_ch1_p_i" SITE "J7"; 
-LOCATE COMP "d0_ch1_p_i" SITE "E9"; 
-LOCATE COMP "d1_ch1_p_i" SITE "J9"; 
-
-LOCATE COMP "clk_ch2_p_i" SITE "G7"; 
-LOCATE COMP "d0_ch2_p_i" SITE "E1"; 
-LOCATE COMP "d1_ch2_p_i" SITE "D1"; 
-
-LOCATE COMP "clk_ch3_p_i" SITE "J6";
-LOCATE COMP "d0_ch3_p_i" SITE "J3"; 
-LOCATE COMP "d1_ch3_p_i" SITE "J4"; 
-LOCATE COMP "d1_ch3_p_i" SITE "J4"; 
+ 
+LOCATE COMP "mux_sel_i" BANK 0 ; 
+LOCATE COMP "ref_clk_i" BANK 0 ; 
+LOCATE COMP "reset_n_i" BANK 0 ; 
+LOCATE COMP "clk_ch0_p_i" SITE "G7" ; 
+LOCATE COMP "clk_ch2_p_i" SITE "J7" ; 
+LOCATE COMP "clk_ch3_p_i" SITE "J6" ; 
+LOCATE COMP "d0_ch0_p_i" SITE "J5" ; 
+LOCATE COMP "d0_ch2_p_i" SITE "G9" ; 
+LOCATE COMP "d0_ch3_p_i" SITE "J4" ; 

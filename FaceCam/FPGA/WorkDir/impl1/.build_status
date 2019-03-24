@@ -5,29 +5,36 @@
             <Task name="IBIS" build_result="0" update_result="3" update_time="0"/>
             <Task name="TimingSimFileVlg" build_result="0" update_result="3" update_time="0"/>
             <Task name="TimingSimFileVHD" build_result="0" update_result="3" update_time="0"/>
-            <Task name="Bitgen" build_result="0" update_result="3" update_time="0"/>
+            <Task name="Bitgen" build_result="2" update_result="0" update_time="1553308827"/>
             <Task name="Jedecgen" build_result="0" update_result="3" update_time="0"/>
             <Task name="Promgen" build_result="0" update_result="3" update_time="0"/>
         </Milestone>
-        <Milestone name="Map" build_result="0" build_time="0">
-            <Task name="Map" build_result="0" update_result="3" update_time="0"/>
+        <Milestone name="Map" build_result="2" build_time="1553308718">
+            <Task name="Map" build_result="2" update_result="0" update_time="1553308718"/>
             <Task name="MapTrace" build_result="0" update_result="3" update_time="0"/>
             <Task name="MapVerilogSimFile" build_result="0" update_result="3" update_time="0"/>
             <Task name="MapVHDLSimFile" build_result="0" update_result="3" update_time="0"/>
         </Milestone>
-        <Milestone name="PAR" build_result="0" build_time="0">
-            <Task name="PAR" build_result="0" update_result="3" update_time="0"/>
-            <Task name="PARTrace" build_result="0" update_result="3" update_time="0"/>
+        <Milestone name="PAR" build_result="2" build_time="1553308762">
+            <Task name="PAR" build_result="2" update_result="0" update_time="1553308762"/>
+            <Task name="PARTrace" build_result="2" update_result="0" update_time="1553308764"/>
             <Task name="IOTiming" build_result="0" update_result="3" update_time="0"/>
         </Milestone>
-        <Milestone name="Synthesis" build_result="0" build_time="0">
-            <Task name="Synplify_Synthesis" build_result="0" update_result="3" update_time="0"/>
+        <Milestone name="Synthesis" build_result="2" build_time="1553308705">
+            <Task name="Synplify_Synthesis" build_result="2" update_result="0" update_time="1553308705"/>
         </Milestone>
         <Milestone name="TOOL_Report" build_result="0" build_time="0">
-            <Task name="HDLE" build_result="2" update_result="0" update_time="1552807098"/>
+            <Task name="HDLE" build_result="2" update_result="0" update_time="1553308657"/>
         </Milestone>
-        <Milestone name="Translate" build_result="0" build_time="0">
-            <Task name="Translate" build_result="0" update_result="3" update_time="0"/>
+        <Milestone name="Translate" build_result="2" build_time="1553308714">
+            <Task name="Translate" build_result="2" update_result="0" update_time="1553308714"/>
         </Milestone>
+        <Report name="FaceCam_impl1.bgn" last_build_time="1553308827" last_build_size="4001"/>
+        <Report name="FaceCam_impl1.bit" last_build_time="1553308827" last_build_size="163485"/>
+        <Report name="FaceCam_impl1.edi" last_build_time="1553308699" last_build_size="389834"/>
+        <Report name="FaceCam_impl1.ncd" last_build_time="1553308762" last_build_size="3173082"/>
+        <Report name="FaceCam_impl1.ngd" last_build_time="1553308714" last_build_size="2537133"/>
+        <Report name="FaceCam_impl1.twr" last_build_time="1553308764" last_build_size="464739"/>
+        <Report name="FaceCam_impl1_map.ncd" last_build_time="1553308717" last_build_size="2367461"/>
     </Strategy>
 </BuildStatus>

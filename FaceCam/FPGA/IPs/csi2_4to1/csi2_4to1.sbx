@@ -268,126 +268,6 @@
                     </spirit:vendorExtensions>
                 </spirit:port>
                 <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch0_n_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch0_n_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch0_n_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch0_p_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch0_p_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch0_p_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch1_n_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch1_n_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch1_n_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch1_p_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch1_p_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch1_p_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch2_n_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch2_n_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch2_n_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch2_p_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch2_p_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch2_p_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch3_n_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch3_n_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch3_n_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_ch3_p_i</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_ch3_p_i</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>inout</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_ch3_p_i</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_n_o</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_n_o</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>out</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_n_o</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
-                    <spirit:name>csi2_4to1_1_d1_p_o</spirit:name>
-                    <spirit:displayName>csi2_4to1_1_d1_p_o</spirit:displayName>
-                    <spirit:wire>
-                        <spirit:direction>out</spirit:direction>
-                    </spirit:wire>
-                    <spirit:vendorExtensions>
-                        <lattice:attributes>
-                            <lattice:attribute lattice:name="exportFrom">csi2_4to1_1.d1_p_o</lattice:attribute>
-                        </lattice:attributes>
-                    </spirit:vendorExtensions>
-                </spirit:port>
-                <spirit:port>
                     <spirit:name>csi2_4to1_1_mux_sel_i</spirit:name>
                     <spirit:displayName>csi2_4to1_1_mux_sel_i</spirit:displayName>
                     <spirit:wire>
@@ -417,7 +297,7 @@
             <lattice:device>LIF-MD6000-6MG81I</lattice:device>
             <lattice:synthesis>synplify</lattice:synthesis>
             <lattice:date>2019-03-11.22:20:30</lattice:date>
-            <lattice:modified>2019-03-17.14:43:54</lattice:modified>
+            <lattice:modified>2019-03-23.09:37:34</lattice:modified>
             <lattice:diamond>3.10.3.144</lattice:diamond>
             <lattice:language>Verilog</lattice:language>
             <lattice:attributes>
@@ -797,76 +677,6 @@
                                 </spirit:wire>
                             </spirit:port>
                             <spirit:port>
-                                <spirit:name>d1_ch0_n_i</spirit:name>
-                                <spirit:displayName>d1_ch0_n_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_ch0_p_i</spirit:name>
-                                <spirit:displayName>d1_ch0_p_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_ch1_n_i</spirit:name>
-                                <spirit:displayName>d1_ch1_n_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_ch1_p_i</spirit:name>
-                                <spirit:displayName>d1_ch1_p_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_ch2_n_i</spirit:name>
-                                <spirit:displayName>d1_ch2_n_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_ch2_p_i</spirit:name>
-                                <spirit:displayName>d1_ch2_p_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_ch3_n_i</spirit:name>
-                                <spirit:displayName>d1_ch3_n_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_ch3_p_i</spirit:name>
-                                <spirit:displayName>d1_ch3_p_i</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>inout</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_n_o</spirit:name>
-                                <spirit:displayName>d1_n_o</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>out</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
-                                <spirit:name>d1_p_o</spirit:name>
-                                <spirit:displayName>d1_p_o</spirit:displayName>
-                                <spirit:wire>
-                                    <spirit:direction>out</spirit:direction>
-                                </spirit:wire>
-                            </spirit:port>
-                            <spirit:port>
                                 <spirit:name>mux_sel_i</spirit:name>
                                 <spirit:displayName>mux_sel_i</spirit:displayName>
                                 <spirit:wire>
@@ -895,7 +705,7 @@
                     <spirit:vendorExtensions>
                         <lattice:synthesis>synplify</lattice:synthesis>
                         <lattice:date>13-03-16.00:00:00</lattice:date>
-                        <lattice:modified>2019-03-17.14:43:54</lattice:modified>
+                        <lattice:modified>2019-03-23.09:37:34</lattice:modified>
                         <lattice:attributes>
                             <lattice:attribute lattice:name="AddComponent">false</lattice:attribute>
                             <lattice:attribute lattice:name="Change4to5">false</lattice:attribute>
@@ -962,7 +772,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>Date</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">03/17/2019</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">03/23/2019</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>ModuleName</lattice:lpckey>
@@ -978,7 +788,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>Time</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">11:26:33</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">09:13:21</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>VendorName</lattice:lpckey>
@@ -1083,7 +893,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>lncnt</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">2</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">1</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>lphsfifoimpl</lattice:lpckey>
@@ -1151,7 +961,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>numofln</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">2</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">1</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>numpixtotal</lattice:lpckey>
@@ -1163,7 +973,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>numrxln</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">2</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">1</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>numtxch</lattice:lpckey>
@@ -1175,7 +985,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>numtxln</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">2</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">1</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>pdbuswidth</lattice:lpckey>
@@ -1227,7 +1037,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>rxwidth</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">16</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">8</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>tclkpost</lattice:lpckey>
@@ -1299,7 +1109,7 @@
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>txwidth</lattice:lpckey>
-                                <lattice:lpcvalue lattice:resolve="constant">16</lattice:lpcvalue>
+                                <lattice:lpcvalue lattice:resolve="constant">8</lattice:lpcvalue>
                             </lattice:lpcentry>
                             <lattice:lpcentry>
                                 <lattice:lpckey>vcch0</lattice:lpckey>
@@ -1447,66 +1257,6 @@
                 <spirit:displayName>csi2_4to1_1_d0_p_o</spirit:displayName>
                 <spirit:internalPortReference spirit:portRef="d0_p_o" spirit:componentRef="csi2_4to1_1"/>
                 <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d0_p_o"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch0_n_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch0_n_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch0_n_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch0_n_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch0_p_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch0_p_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch0_p_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch0_p_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch1_n_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch1_n_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch1_n_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch1_n_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch1_p_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch1_p_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch1_p_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch1_p_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch2_n_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch2_n_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch2_n_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch2_n_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch2_p_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch2_p_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch2_p_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch2_p_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch3_n_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch3_n_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch3_n_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch3_n_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_ch3_p_i</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_ch3_p_i</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_ch3_p_i" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_ch3_p_i"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_n_o</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_n_o</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_n_o" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_n_o"/>
-            </spirit:adHocConnection>
-            <spirit:adHocConnection>
-                <spirit:name>csi2_4to1_1_d1_p_o</spirit:name>
-                <spirit:displayName>csi2_4to1_1_d1_p_o</spirit:displayName>
-                <spirit:internalPortReference spirit:portRef="d1_p_o" spirit:componentRef="csi2_4to1_1"/>
-                <spirit:externalPortReference spirit:portRef="csi2_4to1_1_d1_p_o"/>
             </spirit:adHocConnection>
             <spirit:adHocConnection>
                 <spirit:name>csi2_4to1_1_mux_sel_i</spirit:name>

@@ -1,66 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<BaliProject version="3.2" title="csi2_4to1_1_top" device="LIF-MD6000-6MG81I" default_implementation="csi2_4to1_1_top">
-    <Options/>
-    <Implementation title="csi2_4to1_1_top" dir="csi2_4to1_1_top" description="csi2_4to1_1_top" synthesis="synplify" default_strategy="csi2_4to1_1_top">
+<BaliProject version="3.2" title="csi2_4to1_1_top" device="LIF-MD6000-6MG81I" synthesis="synplify" default_implementation="csi2_4to1_1_top">
+    <Implementation title="csi2_4to1_1_top" dir="csi2_4to1_1_top" description="csi2_4to1_1_top" default_strategy="csi2_4to1_1_top">
         <Options>
             <Option name="HDL type" value="Verilog"/>
-            <Option name="def_top" value="csi2_4to1_1"/>
             <Option name="top" value="csi2_4to1_1"/>
         </Options>
-        <Source name="../../../../../csi2_4to1_1_capture_ctrl_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_rx_global_ctrl_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_dphy_rx_wrap_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_arbiter_fsm_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_line_buffer_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_hdr_buffer_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_tx_byte_data_gen_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_dci_wrapper_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_tx_global_operation_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_pkt_header_csi2_2bg_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_tinit_count_bb.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_synchronizer.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_muxer.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_cmos_2_dphy_ip.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_dphy_2_cmos_ip.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1_csi2_2_csi2_ip.v" type="Verilog" type_short="Verilog">
-            <Options/>
-        </Source>
-        <Source name="../../../../../csi2_4to1_1.v" type="Verilog" type_short="Verilog">
-            <Options top_module="csi2_4to1_1"/>
-        </Source>
-        <Source name="csi2_4to1_1_top.lpf" type="Logic Preference" type_short="LPF">
-            <Options/>
-        </Source>
+        <Source name="../../../../../csi2_4to1_1_capture_ctrl_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_rx_global_ctrl_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_dphy_rx_wrap_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_arbiter_fsm_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_line_buffer_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_hdr_buffer_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_tx_byte_data_gen_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_dci_wrapper_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_tx_global_operation_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_pkt_header_csi2_2bg_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_tinit_count_bb.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_synchronizer.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_muxer.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_cmos_2_dphy_ip.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_dphy_2_cmos_ip.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1_csi2_2_csi2_ip.v" type="Verilog"/>
+        <Source name="../../../../../csi2_4to1_1.v" type="Verilog"/>
+        <Source name="csi2_4to1_1_top.lpf" type="Logic Preference"/>
     </Implementation>
     <Strategy name="csi2_4to1_1_top" file="csi2_4to1_1_top.sty"/>
 </BaliProject>

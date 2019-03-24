@@ -31,20 +31,16 @@ BLOCK PATH TO GROUP "pmi_resets" ;
 
 LOCATE COMP "mux_sel_i" SITE "J2";  
 LOCATE COMP "reset_n_i" SITE "F2"; 
+LOCATE COMP "clk_out"   SITE "J1";
 
 LOCATE COMP "clk_ch0_p" SITE "D9"; 
 LOCATE COMP "d0_ch0_p" SITE "F9"; 
-LOCATE COMP "d1_ch0_p" SITE "H9";
 
 LOCATE COMP "clk_ch1_p" SITE "J7"; 
 LOCATE COMP "d0_ch1_p" SITE "E9"; 
-LOCATE COMP "d1_ch1_p" SITE "J9"; 
 
 LOCATE COMP "clk_ch2_p" SITE "G7"; 
 LOCATE COMP "d0_ch2_p" SITE "E1"; 
-LOCATE COMP "d1_ch2_p" SITE "D1"; 
 
 LOCATE COMP "clk_ch3_p" SITE "J6";
 LOCATE COMP "d0_ch3_p" SITE "J3"; 
-LOCATE COMP "d1_ch3_p" SITE "J4"; 
-LOCATE COMP "d1_ch3_p" SITE "J4"; 
