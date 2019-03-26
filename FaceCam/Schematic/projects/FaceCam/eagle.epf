@@ -266,11 +266,13 @@ UsedLibraryUrn="urn:adsk.eagle:library:197"
 UsedLibraryUrn="urn:adsk.eagle:library:198"
 UsedLibraryUrn="urn:adsk.eagle:library:199"
 UsedLibrary="C:/Users/ukitt/Documents/EAGLE/libraries/library.lbr"
+UsedLibrary="C:/Projects/VR/Git/Basestation_1/FaceCam/Schematic/libraries/ADP323ACPZ-R7.lbr"
+UsedLibrary="C:/Projects/VR/Git/Basestation_1/FaceCam/Schematic/libraries/TPS72012DRVR.lbr"
 
 [Win_1]
 Type="Control Panel"
 Number=0
 
 [Desktop]
-Screen="1920 1080"
+Screen="1366 768"
 Window="Win_1"
