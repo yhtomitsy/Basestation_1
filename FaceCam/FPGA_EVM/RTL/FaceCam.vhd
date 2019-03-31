@@ -36,7 +36,7 @@ entity FaceCam is
         d1_n        : out   std_logic;
         d1_p        : out   std_logic;
         mux_sel_i   : in    std_logic;
-        reset_n_i   : in    std_logic);
+        mipi_reset  : in    std_logic);
 end FaceCam;
 
 architecture RTL of FaceCam is
@@ -77,16 +77,11 @@ architecture RTL of FaceCam is
         csi2_4to1_1_reset_n_i   : in    std_logic);
     end component csi2_4to1;
 
-    ATTRIBUTE IO_TYPE:string;
-    ATTRIBUTE LOC:string;
-
-    ATTRIBUTE IO_TYPE of reset_n_i: signal is "LVCMOS25";
-    ATTRIBUTE IO_TYPE of mux_sel_i: signal is "LVCMOS25";
-
-    ATTRIBUTE LOC of mux_sel_i: signal is "J2";
-    ATTRIBUTE LOC of reset_n_i: signal is "F2";
+	signal mipi_reset_n : std_logic;
 
 begin
+
+	mipi_reset_n <= not mipi_reset;
 
     csi2_4to1_inst : csi2_4to1
     port map (
@@ -121,7 +116,7 @@ begin
         csi2_4to1_1_d1_n_o      => d1_n,
         csi2_4to1_1_d1_p_o      => d1_p,
         csi2_4to1_1_mux_sel_i   => mux_sel_i,
-        csi2_4to1_1_reset_n_i   => reset_n_i
+        csi2_4to1_1_reset_n_i   => mipi_reset_n
     );
 
 end RTL;

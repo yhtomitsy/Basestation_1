@@ -30,7 +30,7 @@ ASIC "csi2_4to1_inst/csi2_4to1_1_inst/csi2csi_inst/cmos2dphy_inst/tx_global_oper
 BLOCK PATH TO GROUP "pmi_resets" ; 
 
 LOCATE COMP "mux_sel_i" SITE "J2";  
-LOCATE COMP "reset_n_i" SITE "F2"; 
+LOCATE COMP "mipi_reset" SITE "F2"; 
 
 LOCATE COMP "clk_ch0_p" SITE "D9"; 
 LOCATE COMP "d0_ch0_p" SITE "F9"; 
