@@ -5,7 +5,7 @@
             <Task name="IBIS" build_result="0" update_result="3" update_time="0"/>
             <Task name="TimingSimFileVlg" build_result="0" update_result="3" update_time="0"/>
             <Task name="TimingSimFileVHD" build_result="0" update_result="3" update_time="0"/>
-            <Task name="Bitgen" build_result="2" update_result="0" update_time="1554026626"/>
+            <Task name="Bitgen" build_result="2" update_result="0" update_time="1554647212"/>
             <Task name="Jedecgen" build_result="0" update_result="3" update_time="0"/>
             <Task name="Promgen" build_result="0" update_result="3" update_time="0"/>
         </Milestone>
@@ -33,8 +33,8 @@
         <Milestone name="Translate" build_result="2" build_time="1554026582">
             <Task name="Translate" build_result="2" update_result="0" update_time="1554026582"/>
         </Milestone>
-        <Report name="FaceCam_impl1.bgn" last_build_time="1554026626" last_build_size="4001"/>
-        <Report name="FaceCam_impl1.bit" last_build_time="1554026626" last_build_size="163485"/>
+        <Report name="FaceCam_impl1.bgn" last_build_time="1554647212" last_build_size="4001"/>
+        <Report name="FaceCam_impl1.bit" last_build_time="1554647212" last_build_size="163485"/>
         <Report name="FaceCam_impl1.edi" last_build_time="1554026566" last_build_size="387692"/>
         <Report name="FaceCam_impl1.ncd" last_build_time="1554026623" last_build_size="3129520"/>
         <Report name="FaceCam_impl1.ngd" last_build_time="1554026582" last_build_size="2536389"/>

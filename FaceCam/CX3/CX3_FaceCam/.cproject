@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?fileVersion 4.0.0?>
-
-<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.debug.1397533359">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.debug.1397533359" moduleId="org.eclipse.cdt.core.settings" name="Debug">
@@ -42,7 +40,6 @@
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths.1745789110" name="Include paths (-I)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;..\..\CX3OV5640LIB\INC&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;..\.&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.functionsections.499892331" name="Function sections (-ffunction-sections)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.functionsections" value="true" valueType="boolean"/>
@@ -55,7 +52,7 @@
 							<tool commandLinePattern="${COMMAND} ${INPUTS} ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT}" id="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.c.linker.debug.484815012" name="ARM Sourcery Windows GCC C Linker" superClass="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.c.linker.debug">
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.gcsections.1701570833" name="Remove unused sections (-Xlinker --gc-sections)" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.gcsections" value="true" valueType="boolean"/>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.scriptfile.344990662" name="Script file (-T)" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.scriptfile" value="${FX3_INSTALL_PATH}/firmware/common/fx3.ld" valueType="string"/>
-								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags.1244741575" name="Other flags" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags" value="-Wl,-d -Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--entry,CyU3PFirmwareEntry &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_debug\cyfxapi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3mipicsi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cy_as0260.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_debug\cyu3lpp.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_debug\cyu3threadx.a&quot; &quot;${ARMGCC_INSTALL_PATH}\arm-none-eabi\lib\libc.a&quot; &quot;${ARMGCC_INSTALL_PATH}\lib\gcc\arm-none-eabi\\${ARMGCC_VERSION}\libgcc.a&quot; &quot;..\..\CX3OV5640LIB\LIB\Debug\libCX3OV5640.a&quot;" valueType="string"/>
+								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags.1244741575" name="Other flags" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags" value="-Wl,-d -Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--entry,CyU3PFirmwareEntry &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_debug\cyfxapi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3mipicsi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cy_as0260.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_debug\cyu3lpp.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_debug\cyu3threadx.a&quot; &quot;${ARMGCC_INSTALL_PATH}\arm-none-eabi\lib\libc.a&quot; &quot;${ARMGCC_INSTALL_PATH}\lib\gcc\arm-none-eabi\\${ARMGCC_VERSION}\libgcc.a&quot; " valueType="string"/>
 								<inputType id="org.eclipse.cdt.cross.arm.gnu.c.linker.input.882805223" superClass="org.eclipse.cdt.cross.arm.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -111,8 +108,6 @@
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths.1912452864" name="Include paths (-I)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;..\..\CX3OV5640LIB\INC&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;..\.&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.functionsections.1385831726" name="Function sections (-ffunction-sections)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.functionsections" value="true" valueType="boolean"/>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.datasections.1198110241" name="Data sections (-fdata-sections)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.optimization.datasections" value="true" valueType="boolean"/>
@@ -124,7 +119,7 @@
 							<tool commandLinePattern="${COMMAND} ${INPUTS} ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT}" id="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.c.linker.release.1853137966" name="ARM Sourcery Windows GCC C Linker" superClass="org.eclipse.cdt.cross.arm.gnu.sourcery.windows.elf.c.linker.release">
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.scriptfile.250756788" name="Script file (-T)" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.scriptfile" value="${FX3_INSTALL_PATH}/firmware/common/fx3.ld" valueType="string"/>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.gcsections.1243041612" name="Remove unused sections (-Xlinker --gc-sections)" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.gcsections" value="true" valueType="boolean"/>
-								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags.567615955" name="Other flags" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags" value="-Wl,-d -Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--entry,CyU3PFirmwareEntry &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyfxapi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3mipicsi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cy_as0260.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3lpp.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3threadx.a&quot; &quot;${ARMGCC_INSTALL_PATH}\arm-none-eabi\lib\libc.a&quot; &quot;${ARMGCC_INSTALL_PATH}\lib\gcc\arm-none-eabi\\${ARMGCC_VERSION}\libgcc.a&quot; &quot;..\..\CX3OV5640LIB\LIB\Release\libCX3OV5640.a&quot;" valueType="string"/>
+								<option id="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags.567615955" name="Other flags" superClass="org.eclipse.cdt.cross.arm.gnu.c.link.option.otherflags" value="-Wl,-d -Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--entry,CyU3PFirmwareEntry &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyfxapi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3mipicsi.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cy_as0260.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3lpp.a&quot; &quot;${FX3_INSTALL_PATH}\firmware\u3p_firmware\lib\fx3_release\cyu3threadx.a&quot; &quot;${ARMGCC_INSTALL_PATH}\arm-none-eabi\lib\libc.a&quot; &quot;${ARMGCC_INSTALL_PATH}\lib\gcc\arm-none-eabi\\${ARMGCC_VERSION}\libgcc.a&quot; &quot;;" valueType="string"/>
 								<inputType id="org.eclipse.cdt.cross.arm.gnu.c.linker.input.2039586745" superClass="org.eclipse.cdt.cross.arm.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -161,7 +156,12 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope" versionNumber="1">
-		<resource resourceType="PROJECT" workspacePath="/CX3_FaceCam"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/CX3_FaceCam"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/CX3_FaceCam"/>
+		</configuration>
 	</storageModule>
 </cproject>

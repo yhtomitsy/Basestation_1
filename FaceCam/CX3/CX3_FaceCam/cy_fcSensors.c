@@ -1163,7 +1163,6 @@ CyU3PReturnStatus_t fc_I2C_Switch(uint8_t CntrReg)
 {
     CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
     CyU3PI2cPreamble_t preamble;
-    uint8_t cnt=0;
 
     //preamble.buffer[1] = CntrReg;
     preamble.buffer[0] = TCA9548_I2C_WRITE_ADDRESS; /* Slave address: write operation */
@@ -1214,34 +1213,51 @@ CyOv5640Reg_t OV5647_BaseConfigurationSettings [] =
     // Setup MIPI Phy
     {0x3016, 0x08}, // MIPI pad enable
     {0x3017, 0xe0}, // High speed common mode voltage/ pgm
-    {0x3018, 0x44},
-    {0x301c, 0xf8},
-    {0x301d, 0xf0},
-    {0x3a18, 0x00},
-    {0x3a19, 0xf8},
-    {0x3c01, 0x80},
-    {0x3b07, 0x0c},
+    {0x3018, 0x44}, // MIPI mode enable
+    {0x301c, 0xf8}, // Debug mode
+    {0x301d, 0xf0}, // Debug mode
+    {0x3a18, 0x00}, // Gain ceiling
+    {0x3a19, 0xf8}, // Gain ceiling
+    {0x3c01, 0x80}, // 50/60Hz detection
+    {0x3b07, 0x0c}, // Strobe FREX MODE
+
+    // *** Timing HTS
     {0x380c, 0x07},
     {0x380d, 0x68},
+    // *** Timing VTS
     {0x380e, 0x03},
     {0x380f, 0xd8},
+
+    // Timing X,Y
     {0x3814, 0x31},
     {0x3815, 0x31},
-    {0x3708, 0x64},
-    {0x3709, 0x52},
+
+    {0x3708, 0x64}, // Unknown
+    {0x3709, 0x52}, // ?
+
+    // *** Timing X output size
     {0x3808, 0x02},
     {0x3809, 0x80},
+
+    // *** Timing Y output vertical size
     {0x380a, 0x01},
     {0x380b, 0xE0},
+
+    // Timing address start
     {0x3801, 0x00},
     {0x3802, 0x00},
+    // Timing address end
     {0x3803, 0x00},
     {0x3804, 0x0a},
     {0x3805, 0x3f},
     {0x3806, 0x07},
     {0x3807, 0xa1},
+
+    // ISP horizontal/vertical offset
     {0x3811, 0x08},
     {0x3813, 0x02},
+
+    // Unknown
     {0x3630, 0x2e},
     {0x3632, 0xe2},
     {0x3633, 0x23},
@@ -1260,6 +1276,9 @@ CyOv5640Reg_t OV5647_BaseConfigurationSettings [] =
     {0x3f05, 0x02},
     {0x3f06, 0x10},
     {0x3f01, 0x0a},
+
+    // B50/B60 Step
+    // AEC/AGC control
     {0x3a08, 0x01},
     {0x3a09, 0x27},
     {0x3a0a, 0x00},
@@ -1272,13 +1291,20 @@ CyOv5640Reg_t OV5647_BaseConfigurationSettings [] =
     {0x3a1e, 0x50},
     {0x3a11, 0x60},
     {0x3a1f, 0x28},
+
+    // BLC registers (Black level calibration)
     {0x4001, 0x02},
     {0x4004, 0x02},
     {0x4000, 0x09},
-    {0x4837, 0x24},
+    {0x4837, 0x24}, // *** PCLK Period
     {0x4050, 0x6e},
     {0x4051, 0x8f},
     {0x0100, 0x01},
+
+    {0x4202, 0x00}, // Stream on // Add by KU.
+	{0x3000, 0x0f},
+	{0x3001, 0xff},
+	{0x3002, 0xe4},
 };
 
 /* Configure OV5647 for VGA @60FPS*/
@@ -1289,26 +1315,26 @@ CyU3PReturnStatus_t OV5647_ImageSensor_Set_Base()
     if (glIsValidSensor != CyTrue)
         return CY_U3P_ERROR_NOT_SUPPORTED;
 
-    configSize = (sizeof(OV5640_BaseConfigurationSettings))/(sizeof(CyOv5640Reg_t));
-    return OV5640_WriteConfigurationSettings(OV5640_BaseConfigurationSettings, configSize);
+    configSize = (sizeof(OV5647_BaseConfigurationSettings))/(sizeof(CyOv5640Reg_t));
+    return OV5640_WriteConfigurationSettings(OV5647_BaseConfigurationSettings, configSize);
 
 }
 
 CyU3PReturnStatus_t fc_ImageSensor_Init(void)
 {
 
-#ifdef OV5640_DEBUG
+
     CyU3PDebugPrint(4,"\r\n FaceCam Camera Initialization");
-#endif
+
 
     CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
 
     int8_t cam_index;
 
-    for (cam_index = SW_CAM0; cam_index <= SW_CAM3; cam_index++) {
-        status = fc_I2C_Switch(cam_index);
-        if (status != CY_U3P_SUCCESS)
-            return status;
+    //for (cam_index = SW_CAM0; cam_index <= SW_CAM3; cam_index++) {
+//        status = fc_I2C_Switch(SW_CAM0);
+//        if (status != CY_U3P_SUCCESS)
+//            return status;
 
         //status = OV5640_VerifyChipId();
         //if (status != CY_U3P_SUCCESS)
@@ -1320,7 +1346,19 @@ CyU3PReturnStatus_t fc_ImageSensor_Init(void)
 
         //status = OV5640_ConfigureAutofocus ();
 
-    }
+    //}
+
+//        status = fc_I2C_Switch(SW_CAM2);
+//        if (status != CY_U3P_SUCCESS)
+//            return status;
+
+        //status = OV5640_VerifyChipId();
+        //if (status != CY_U3P_SUCCESS)
+        //    return status;
+
+//        status = OV5647_ImageSensor_Set_Base ();
+//        if (status != CY_U3P_SUCCESS)
+//            return status;
 
     return status;
 }
