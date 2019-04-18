@@ -31,6 +31,13 @@
 #define OV5640_I2C_WRITE_ADDRESS        ((OV5640_I2C_ADRESS << 1))
 #define OV5640_CHIP_ID                  (0x5640)
 
+/* OV5647 Misc Macros */
+#define OV5647_I2C_ADRESS               (0x36)
+#define OV5647_I2C_READ_ADDRESS         ((OV5647_I2C_ADRESS << 1) | 1)
+#define OV5647_I2C_WRITE_ADDRESS        ((OV5647_I2C_ADRESS << 1))
+#define OV5647_CHIP_ID                  (0x5647)
+
+
 /* OV5640 Regiser Addresses */
 #define OV5640_SYSTEM_CTRL0             (0x3008)
 #define OV5640_CHIP_ID_HIGH_BYTE        (0x300A)
@@ -872,6 +879,33 @@ CyU3PReturnStatus_t OV5640_SensorWrite(uint16_t regAddr, uint16_t count, uint8_t
     return status;
 }
 
+CyU3PReturnStatus_t OV5647_SensorWrite(uint16_t regAddr, uint16_t count, uint8_t *buf)
+{
+    CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
+    CyU3PI2cPreamble_t preamble;
+    uint8_t cnt=0;
+
+    for(cnt=0; cnt<5 ; cnt++)
+    {
+        preamble.buffer[1] = CY_U3P_GET_MSB (regAddr);
+        preamble.buffer[2] = CY_U3P_GET_LSB (regAddr);
+        preamble.buffer[0] = OV5647_I2C_WRITE_ADDRESS; /* Slave address: write operation */
+        preamble.length = 3;
+        preamble.ctrlMask = 0x0000;
+
+        status = CyU3PI2cTransmitBytes (&preamble, buf, count,5);
+        CyU3PThreadSleep(1);
+        if (status == CY_U3P_SUCCESS)
+        {
+            break;
+        }
+#ifdef OV5640_DEBUG
+        else
+            CyU3PDebugPrint(4,"\r\nImageSensorSensorWrite Failed addr=0x%x",regAddr);
+#endif
+    }
+    return status;
+}
 
 /* Function to verify that the image sensor is the OV5640 chip 
  * Sets up flag glIsValidSensor which is to be verified before 
@@ -921,6 +955,25 @@ CyU3PReturnStatus_t OV5640_WriteConfigurationSettings (CyOv5640Reg_t * configSet
 #endif
         rwBuffer = configSettings[regCounter].regValue;
         status = OV5640_SensorWrite (configSettings[regCounter].regAddr, 1, &rwBuffer); 
+    }
+
+    return status;
+}
+
+CyU3PReturnStatus_t OV5647_WriteConfigurationSettings (CyOv5640Reg_t * configSettings, uint16_t configSettingsSize)
+{
+    uint16_t regCounter = 0;
+    CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
+    uint8_t rwBuffer;
+
+    CyU3PDebugPrint (4,"\r\nWriting Configuration Settings:");
+
+    for (regCounter = 0; ((regCounter < configSettingsSize) && (status == CY_U3P_SUCCESS)); regCounter++)
+    {
+        CyU3PDebugPrint (4,"\r\nRegister = 0x%x: Value = 0x%x",configSettings[regCounter].regAddr,
+                configSettings[regCounter].regValue);
+        rwBuffer = configSettings[regCounter].regValue;
+        status = OV5647_SensorWrite (configSettings[regCounter].regAddr, 1, &rwBuffer);
     }
 
     return status;
@@ -1307,16 +1360,135 @@ CyOv5640Reg_t OV5647_BaseConfigurationSettings [] =
 	{0x3002, 0xe4},
 };
 
+CyOv5640Reg_t OV5647_Rasp_BaseConfigurationSettings [] =
+{
+    {0x0100, 0x00},
+    {0x0100, 0x00},
+    {0x0103, 0x01},
+    {0x3034, 0x1A},
+    {0x3035, 0x21}, // System clock div = 2, Scale_divider MIPI = 1
+    {0x3036, 0x62}, // PLL multiplier
+    {0x303C, 0x11},
+    {0x3106, 0xF5}, // PLL_SCLK/2, Enable SCLK Arbiter
+
+    {0x3820, 0x41},
+    {0x3827, 0xEC},
+    {0x370C, 0x03},
+    {0x3612, 0x59},
+    {0x3618, 0x00},
+    {0x5000, 0x06},
+    {0x5002, 0x40},
+    {0x5003, 0x08},
+    {0x5A00, 0x08},
+    {0x3000, 0x00},
+    {0x3001, 0x00},
+    {0x3002, 0x00},
+    {0x3016, 0x08},
+    {0x3017, 0xE0},
+    {0x3018, 0x44},
+    {0x301C, 0xF8},
+    {0x301D, 0xF0},
+    {0x3A18, 0x00},
+    {0x3A19, 0xF8},
+    {0x3C01, 0x80},
+    {0x3B07, 0x0C},
+    {0x3800, 0x00},
+    {0x3801, 0x00},
+    {0x3802, 0x00},
+    {0x3803, 0x00},
+    {0x3804, 0x0A},
+    {0x3805, 0x3F},
+    {0x3806, 0x07},
+    {0x3807, 0xA3},
+    {0x3808, 0x05},
+    {0x380A, 0x03},
+    {0x380B, 0xCC},
+    {0x380C, 0x07},
+    {0x380D, 0x68},
+    {0x380E, 0x04},
+    {0x380F, 0x50},
+    {0x3811, 0x10},
+    {0x3813, 0x06},
+    {0x3814, 0x31},
+    {0x3815, 0x31},
+    {0x3830, 0x2E},
+    {0x3832, 0xE2},
+    {0x3833, 0x23},
+    {0x3634, 0x44},
+    {0x3636, 0x06},
+    {0x3620, 0x64},
+    {0x3621, 0xE0},
+    {0x3600, 0x37},
+    {0x3704, 0xA0},
+    {0x3703, 0x5A},
+    {0x3715, 0x78},
+    {0x3717, 0x01},
+    {0x3731, 0x02},
+    {0x370B, 0x60},
+    {0x3705, 0x1A},
+    {0x3F05, 0x02},
+    {0x3F06, 0x10},
+    {0x3F01, 0x0A},
+    {0x3A08, 0x01},
+    {0x3A09, 0x28},
+    {0x3A0A, 0x00},
+    {0x3A0B, 0xF6},
+    {0x3A0D, 0x08},
+    {0x3A0E, 0x06},
+    {0x3A0F, 0x58},
+    {0x3A10, 0x50},
+    {0x3A1B, 0x58},
+    {0x3A1E, 0x50},
+    {0x3A11, 0x60},
+    {0x3A1F, 0x28},
+    {0x4001, 0x02},
+    {0x4004, 0x04},
+    {0x4000, 0x09},
+    {0x4837, 0x16},
+
+    {0x4800, 0x04},
+
+    {0x3503, 0x03},
+
+    {0x350A, 0x00},
+    {0x350B, 0x16},
+    {0x3212, 0x00},
+    {0x380E, 0x05},
+    {0x380F, 0x9B},
+    {0x3500, 0x00},
+    {0x3501, 0x1A},
+    {0x3502, 0xF0},
+    {0x3212, 0x10},
+    {0x3212, 0xA0},
+    {0x350A, 0x00},
+    {0x350B, 0x10},
+    {0x350A, 0x00},
+    {0x350B, 0x10},
+    {0x3212, 0x00},
+    {0x3500, 0x00},
+    {0x3501, 0x1A},
+    {0x3502, 0xF0},
+    {0x3212, 0xA0},
+
+    {0x0100, 0x01},
+
+    {0x350A, 0x01},
+    {0x350B, 0x10},
+    {0x3212, 0x00},
+    {0x3500, 0x00},
+
+};
+
 /* Configure OV5647 for VGA @60FPS*/
 // OV5647 is camera module
 CyU3PReturnStatus_t OV5647_ImageSensor_Set_Base()
 {
     uint16_t configSize;
-    if (glIsValidSensor != CyTrue)
-        return CY_U3P_ERROR_NOT_SUPPORTED;
+    //if (glIsValidSensor != CyTrue)
+    //    return CY_U3P_ERROR_NOT_SUPPORTED;
 
-    configSize = (sizeof(OV5647_BaseConfigurationSettings))/(sizeof(CyOv5640Reg_t));
-    return OV5640_WriteConfigurationSettings(OV5647_BaseConfigurationSettings, configSize);
+    configSize = (sizeof(OV5647_Rasp_BaseConfigurationSettings))/(sizeof(CyOv5640Reg_t));
+    return OV5647_WriteConfigurationSettings(OV5647_Rasp_BaseConfigurationSettings, configSize);
 
 }
 
@@ -1340,6 +1512,7 @@ CyU3PReturnStatus_t fc_ImageSensor_Init(void)
         //if (status != CY_U3P_SUCCESS)
         //    return status;
 
+    	CyU3PDebugPrint(4,"\r\n Camera init");
         status = OV5647_ImageSensor_Set_Base ();
         if (status != CY_U3P_SUCCESS)
             return status;

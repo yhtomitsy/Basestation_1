@@ -1340,7 +1340,7 @@ esUVCUvcApplnInit (void)
     CyU3PReturnStatus_t status = CY_U3P_SUCCESS;
 
     /* Initialize the I2C interface for Mipi Block Usage and Camera. */
-    status = CyU3PMipicsiInitializeI2c (CY_U3P_MIPICSI_I2C_400KHZ);
+    status = CyU3PMipicsiInitializeI2c (CY_U3P_MIPICSI_I2C_100KHZ);
     if( status != CY_U3P_SUCCESS)
     {
         CyU3PDebugPrint (4, "\n\rAppInit:I2CInit Err = 0x%x.",status);
@@ -1750,6 +1750,7 @@ void esUVCUvcAppThread_Entry (uint32_t input)
                 CyU3PMipicsiWakeup();
                 //TODO Change this function with "Sensor Specific" PowerUp function to PowerUp the sensor
                 CyU3PDebugPrint(4,"\r\n PowerDown function to PowerUp the sensor : 1750");
+                fc_ImageSensor_Init();
 //                esCamera_Power_Up();
             }
             continue;
